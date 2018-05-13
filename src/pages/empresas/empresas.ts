@@ -127,19 +127,20 @@ export class EmpresasPage {
       // }
     });
     if(!passou) {
-      this.googlePlus.trySilentLogin({})
+      await this.googlePlus.trySilentLogin({})
       .then(user => {
         if(user) {
           id = user.userId
         }
       })
     }
+    console.log('id usuario em empresas -> ', id)    
     var bd = firebase.database().ref('users/' + id + '/senhas')
-    let ultimaSenha
+    let ultimaSenha = 0
     await bd.on('child_added', (data) => {
-        ultimaSenha = data.key;
+        ultimaSenha = parseInt(data.key);
+        ultimaSenha++
     });
-    ultimaSenha++
     firebase.database().ref('users/' + id + '/senhas/' + ultimaSenha).set({
         nrSenha: this.empresas[i].proxSenha,
         empresa: this.empresas[i].nome,

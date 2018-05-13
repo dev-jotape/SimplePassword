@@ -118,36 +118,30 @@ export class LoginPage {
   // }
 
   loginWithGoogle () {
-    this.googlePlus.login({})
-    .then(user => {
-      let id = user.userId;
-      let name = user.displayName;
-      let email = user.email;
-      let celular = ' ';
-      let cadastrado = false
+    let id, name, email, celular, users = []
 
-      var bd = firebase.database().ref('users/');
-      console.log('pegou referencia do banco=> ', bd)
-      bd.on('child_added', (data) => {
-        if(data.key === id) {
-          cadastrado = true
-          console.log('ja existe no banco')          
-          this.goHome();
+    this.googlePlus.login({})
+    .then(async user => {
+      id = user.userId;
+      name = user.displayName;
+      email = user.email;
+      celular = ' ';
+
+      await this.verificaCadastro(id).then((res) => {
+        if(res) {
+          this.goHome()
+        } else {
+          console.log('gravando no banco')
+          firebase.database().ref('users/' + id).set({
+            nome: name,
+            email: email,
+            celular: celular,
+            minutos: 10,
+            nrFila: 5,
+            permitePromocao: false
+          });          
         }
       });
-
-      if(!cadastrado) {
-        console.log('gravando no banco')
-        firebase.database().ref('users/' + id).set({
-          nome: name,
-          email: email,
-          celular: celular,
-          minutos: 10,
-          nrFila: 5,
-          permitePromocao: false
-        });
-        this.goHome()
-      }      
     })
     .catch(err => {
       console.log('erro-> ', err)
@@ -160,6 +154,20 @@ export class LoginPage {
         showCloseButton: true
       });
       toast.present();
+    });
+  }
+
+  verificaCadastro (id) {
+    return new Promise (async (resolve, reject) => {
+      var bd = firebase.database().ref('users/' + id);
+      console.log('pegou referencia do banco=> ', bd)
+      await bd.on('child_added', (data) => {
+        console.log('val -> ', data.val())
+        resolve (true)
+      });
+      setTimeout(() => {
+        resolve (false)
+      }, 2000)
     });
   }
 

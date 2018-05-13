@@ -48,14 +48,24 @@ export class HomePage {
       let imagem = result.split('_')[2]
       let senha = result.split('_')[3]
       let estimado = result.split('_')[4]
-      this.gerarSenha (empresaId, empresaNome, imagem, senha, estimado)
+      this.getUltimaSenha (empresaId, empresaNome, imagem, senha, estimado)
     }, (err) => {
       console.log(err);
     });
   }
 
-  async gerarSenha (idEmpresa, nome, imagem, senha, estimado) {
-    firebase.database().ref('users/' + this.id + '/senhas/' + senha).set({
+  async getUltimaSenha (empresaId, empresaNome, imagem, senha, estimado) {
+    var bd = firebase.database().ref('users/' + this.id + '/senhas')
+    let ultimaSenha = 0
+    await bd.on('child_added', (data) => {
+        ultimaSenha = parseInt(data.key);
+        ultimaSenha++
+    });
+    this.gerarSenha(empresaId, empresaNome, imagem, senha, estimado, ultimaSenha)
+  }
+
+  async gerarSenha (idEmpresa, nome, imagem, senha, estimado, ultimaSenha) {
+    firebase.database().ref('users/' + this.id + '/senhas/' + ultimaSenha).set({
         nrSenha: senha,
         empresa: nome,
         estimado: estimado,
@@ -75,9 +85,9 @@ export class HomePage {
   //   });
   // }
 
-  getId() {
+  async getId() {
     let idUser
-    firebase.auth().onAuthStateChanged((user) => {
+    await firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.id = user.uid
         this.initializeItems(this.id)
@@ -100,7 +110,7 @@ export class HomePage {
         }
       })
       .catch(err => {
-        alert(JSON.stringify(err))
+        // alert(JSON.stringify(err))
       })
     }
   }
@@ -126,7 +136,7 @@ export class HomePage {
         "imagem": data.val().imagem
       })
     });
-    console.log('senhas-> ', this.senhas)
+    console.log('senhas -> ', this.senhas)
     //para Loading
     setTimeout(() => {
       loading.dismiss();
