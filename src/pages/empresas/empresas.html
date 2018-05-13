@@ -1,0 +1,29 @@
+<!--
+  Generated template for the EmpresasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item *ngFor="let empresa of empresas; let i = index" (click)="showConfirm(i)">
+      <ion-thumbnail item-start>
+        <img [src]="empresa.imagem">
+      </ion-thumbnail>
+      <h2>{{empresa.nome}}</h2>
+      <p>{{empresa.endereco}}</p>
+      <p>{{empresa.telefone}}</p>
+      <!-- <button ion-button clear item-end>Gerar Senha</button> -->
+    </ion-item>
+  </ion-list>
+</ion-content>

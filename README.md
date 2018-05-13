@@ -1,30 +1,27 @@
-# Ionic 2 QRScanner Sample Application
+# Simple Password
 
-This is a sample Barcode Scanner application built on [Ionic 2](https://github.com/driftyco/ionic) and that uses [Ionic Native](https://github.com/driftyco/ionic-native)
+APP Simple Password, com o objetivo de gerenciamento eletrônico de filas.
 
 ## Setup
 
-To setup this application locally, you'll have to clone the repository and install all the required libraries and plugins. Thankfully, Ionic provides an easy way with Ionic state
+Para utilizar este app siga as orientações.
 
-__NOTICE__: make sure you have the latest Ionic & Cordova CLI installed (`npm install -g ionic cordova`)
+__NOTICE__: Necessário ter o IONIC instalado (`npm install -g ionic cordova`)
 
-Steps:
+Passos:
 
-- `git clone https://github.com/jadsalhani/ionic2-qrscanner-example.git`
-- `cd ionic2-qrscanner-example`
-- `yarn install`
-- `ionic cordova platform add ios`
+- `git clone https://github.com/joaopedro1206/SimplePassword.git`
+- `cd SimplePassword`
+- `npm install`
+- `ionic serve` (executar na maquina)
+- `ionic cordova platform add android`
+- `ionic cordova run android`
 
-After these commands, your application is all ready to be built and deployed to the platform of your choice.
+## Estrutura do app
 
-_ANDROID NOTICE_: For those who would like to build on Android, just simply run `ionic cordova platform add android`.
-
-## Project Structure
-
-It provides also some extra components to give it a little flavor:
-- Login page template
-- Event list page in case more than one QR should be scanned.
-- Scan page template that scans a QRCode
-- Scan result page that displays the Barcode/QR result after scanning
-- Basic HTTP service to make API calls which comprises some helper methods
-- Basic User Service to handle logging-in and simulating sessions
+- Tela de Login
+- Tela de Registro de usuário
+- Login com Google Plus
+- Pagina inicial com opção de Scan de QRCODE / BarCode
+- Serviço de Autenticação Firebase
+- Banco de dados Firebase

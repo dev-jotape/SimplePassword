@@ -13,6 +13,23 @@ import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import { AlertProvider } from '../providers/alert/alert';
+import { TabsPage } from '../pages/tabs/tabs';
+import { ContactPage } from '../pages/contact/contact';
+import { HomePage } from '../pages/home/home';
+import { EmpresasPage } from '../pages/empresas/empresas';
+import firebase from 'firebase';
+import { GooglePlus } from '@ionic-native/google-plus'; // We'll install this in the next section
+import { RegisterPage } from '../pages/register/register';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBlw4UhthCXxjD7gZxdeJGkvBNZEV33mYQ",
+  authDomain: "simplepassword-89a27.firebaseapp.com",
+  databaseURL: "https://simplepassword-89a27.firebaseio.com",
+  projectId: "simplepassword-89a27",
+  storageBucket: "simplepassword-89a27.appspot.com",
+  messagingSenderId: "370145099892"
+}
+firebase.initializeApp(firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -20,7 +37,12 @@ import { AlertProvider } from '../providers/alert/alert';
     EventListPage,
     LoginPage,
     ScanPage,
-    ScanResultPage
+    ScanResultPage,
+    TabsPage,
+    HomePage,
+    ContactPage,
+    EmpresasPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -32,8 +54,13 @@ import { AlertProvider } from '../providers/alert/alert';
     MyApp,
     EventListPage,
     LoginPage,
+    TabsPage,
     ScanPage,
-    ScanResultPage
+    ScanResultPage,
+    EmpresasPage,
+    HomePage,
+    ContactPage,
+    RegisterPage
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler },
     Api,
@@ -41,7 +68,8 @@ import { AlertProvider } from '../providers/alert/alert';
     StatusBar,
     SplashScreen,
     BarcodeScanner,
-    AlertProvider
+    AlertProvider,
+    GooglePlus
   ]
 })
 export class AppModule { }

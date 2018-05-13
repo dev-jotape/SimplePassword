@@ -1,24 +1,60 @@
-<ion-header>
+<!-- -->
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="login-content">
 
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo">
+        <img src="assets/img/logo_simple.png"/>
+      </div>
+    </div>
 
-</ion-header>
-
-
-<ion-content padding>
- <form (ngSubmit)="login()" [formGroup]="loginFormControl">
-    <ion-list inset>
+    <!-- Login form -->
+    <div class="list-form formLogin">
       <ion-item>
-        <ion-label>Email</ion-label>
-        <ion-input type="email" formControlName="email"></ion-input>
+        <ion-label floating>
+          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
       </ion-item>
+
       <ion-item>
-        <ion-label>Password</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Password
+        </ion-label>
+        <ion-input type="password" [(ngModel)]="password" ngControl="password"></ion-input>
       </ion-item>
-      <button type="submit" ion-button color="primary" block>Login</button>
-    </ion-list>
-  </form>
+    </div>
+
+    <p text-center ion-text color="" tappable (click)="forgotPass()" class="textEsqueceuSenha"><strong>Esqueceu a senha?</strong></p>
+
+    <div>
+      <button ion-button icon-start block color="dark" tappable (click)="login()" class="btnEntrar">
+        <ion-icon name="log-in"></ion-icon>
+        ENTRAR
+      </button>
+
+      <p text-center ion-text class="textLoginCom">Ou Entrar com:</p>
+
+      <ion-grid>
+        <!-- <button ion-button icon-only block class="btn-facebook" (click)="loginWithFace()">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </button> -->
+        <button ion-button icon-only block class="btn-gplus" color="danger" (click)="loginWithGoogle()" >
+          <ion-icon name="logo-googleplus"></ion-icon>
+        </button>
+        <!-- <google-login></google-login> -->
+      </ion-grid>
+
+    </div>
+
+
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="" tappable (click)="register()">Novo por aqui? <strong>Cadastre-se</strong></span>
+    </div>
+
+  </div>
 </ion-content>

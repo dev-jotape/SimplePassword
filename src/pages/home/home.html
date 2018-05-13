@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Senha</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <ion-list>
+      <ion-item>
+        
+      </ion-item>
+  </ion-list> -->
+  <ion-card style="margin: 0px;    width: 100%;" *ngFor="let i of senhas; let index = index">
+    <div text-right>
+      <a (click)="showConfirm(i.key)">
+        <ion-icon name="close" style="position: absolute; margin-top: 3%; margin-left: -6%;"></ion-icon>
+      </a>
+    </div>
+      <ion-card-content>
+        <ion-card-title>
+          <ion-row>
+            <ion-col col-4 >
+              <ion-thumbnail item-start>
+                <img [src]="i.imagem" style="width: 70%">
+              </ion-thumbnail>
+            </ion-col>
+            <ion-col style="margin-top: 3%">
+              <h2>{{i.empresa}}</h2>
+              <h1>SENHA: {{i.nrSenha}}</h1>
+            </ion-col>
+          </ion-row>
+        </ion-card-title>
+        <p>
+          Tempo estimado: {{i.estimado}}m
+        </p>
+      </ion-card-content>
+    </ion-card>
+  <ion-fab class="btnFab">
+    <button ion-fab color="primary" (click)="scanBarCode()">
+      <ion-icon name="qr-scanner"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

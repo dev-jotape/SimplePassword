@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Configurações
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <ion-item style="text-align: center;">
+        <h2>{{nome}}</h2>
+        <p>{{email}}</p>
+        <button ion-button color="dark" outline (click)="logout()">SAIR</button>          
+        <!-- <button ion-button clear item-end>Gerar Senha</button> -->
+      </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Notificar faltando
+      <ion-badge>{{minutos}}</ion-badge>
+      minutos
+    </ion-list-header>
+    <ion-item>
+        <ion-range [(ngModel)]="minutos" min="0" max="30">
+        </ion-range>
+    </ion-item>   
+  </ion-list>  
+
+  <ion-list>
+      <ion-list-header>
+        Notificar faltando
+        <ion-badge color="secondary">{{senhas}}</ion-badge>
+        senhas
+      </ion-list-header>
+      <ion-item>
+          <ion-range [(ngModel)]="senhas" min="0" max="20" color="secondary">
+          </ion-range>
+      </ion-item>   
+    </ion-list>  
+
+    <ion-list>
+        <ion-list-header>
+          <ion-label>Deseja receber promoções?</ion-label>
+          <ion-toggle [(ngModel)]="promocoes" class="togglePromocao"></ion-toggle>
+        </ion-list-header>
+    </ion-list>
+
+    <div text-center>
+      <button ion-button color="primary" round (click)="salvar()" style="width: 95%">Salvar</button> 
+    </div>
+</ion-content>
