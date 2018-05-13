@@ -6,7 +6,7 @@ APP Simple Password, com o objetivo de gerenciamento eletrônico de filas.
 
 Para utilizar este app siga as orientações.
 
-__NOTICE__: Necessário ter o IONIC instalado (`npm install -g ionic cordova`)
+__IMPORTANTE__: Necessário ter o IONIC instalado (`npm install -g ionic cordova`)
 
 Passos:
 
@@ -14,8 +14,8 @@ Passos:
 - `cd SimplePassword`
 - `npm install`
 - `ionic serve` (executar na maquina)
-- `ionic cordova platform add android`
-- `ionic cordova run android`
+- `ionic cordova platform add android` (adiciona a plataforma android)
+- `ionic cordova run android` (debug no aparelho)
 
 ## Estrutura do app
 
